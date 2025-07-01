@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CollectionsMasterConsoleUI
 {
@@ -8,6 +9,10 @@ namespace CollectionsMasterConsoleUI
     {
         static void Main(string[] args)
         {
+
+            Random rnd = new Random();
+
+
             //TODO: Follow the steps provided in the comments under each region.
             //Make the console formatted to display each section well
             //Utlilize the method stubs at the bottom for the methods you must create ⬇⬇⬇
@@ -20,9 +25,7 @@ namespace CollectionsMasterConsoleUI
 
 
             //TODO: Create a method to populate the number array with 50 random numbers that are between 0 and 50
-            //int[] rando50 = new int[5];
             int[] rando50 = new int[50];
-            Random rnd = new Random();
             for (int i = 0; i < rando50.Length; i++)
             {
                 rando50[i] = rnd.Next(1, 51);
@@ -35,7 +38,7 @@ namespace CollectionsMasterConsoleUI
 
             //TODO: Print the last number of the array            
 
-            Console.WriteLine($"Last number: {rando50[rando50.Length-1]}");
+            Console.WriteLine($"Last number: {rando50[rando50.Length - 1]}");
 
             Console.WriteLine("All Numbers Original");
             //UNCOMMENT this method to print out your numbers from arrays or lists
@@ -93,23 +96,45 @@ namespace CollectionsMasterConsoleUI
 
             /*   Set Up   */
             //TODO: Create an integer List
-            
+
+            List<int> iList = new List<int>();
 
             //TODO: Print the capacity of the list to the console
-            
+
+            Console.WriteLine($"List capacity:{iList.Count}");
 
             //TODO: Populate the List with 50 random numbers between 0 and 50 you will need a method for this            
-            
+
+            for (int i = 0; i < 50; i++)
+
+            {
+                iList.Add(rnd.Next(1, 51));
+            }
 
             //TODO: Print the new capacity
-            
+
+            Console.WriteLine($"List capacity:{iList.Count}");
+            NumberPrinter(iList);
+
 
             Console.WriteLine("---------------------");
 
             //TODO: Create a method that prints if a user number is present in the list
             //Remember: What if the user types "abc" accident your app should handle that!
             Console.WriteLine("What number will you search for in the number list?");
+
+            string response = Console.ReadLine();
+
+            while (!response.All(char.IsDigit))
             
+            { 
+            Console.WriteLine("Please enter a number.");
+            response = Console.ReadLine();
+            }
+
+            int user = int.Parse(response);
+            Console.Write($"Does this list contain this user? {iList.Contains(user)}");
+
             Console.WriteLine("-------------------");
 
             Console.WriteLine("All Numbers:");
@@ -120,7 +145,23 @@ namespace CollectionsMasterConsoleUI
 
             //TODO: Create a method that will remove all odd numbers from the list then print results
             Console.WriteLine("Evens Only!!");
-            
+
+            for (int i = 0; i < iList.Count; i++)
+            {
+                if (iList[i] % 2 != 0)
+                {
+                    iList.RemoveAt(i);
+                }
+                else
+                {
+                    iList[i] = iList[i];
+
+                }
+            }
+
+
+            NumberPrinter(iList);
+
             Console.WriteLine("------------------");
 
             //TODO: Sort the list then print results
