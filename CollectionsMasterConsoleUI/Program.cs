@@ -54,6 +54,7 @@ namespace CollectionsMasterConsoleUI
                 2) Second way, Create a custom method (scroll to bottom of page to find ⬇⬇⬇)
             */
 
+
             //Array.Reverse(rando50);
 
 
@@ -152,11 +153,7 @@ namespace CollectionsMasterConsoleUI
                 {
                     iList.RemoveAt(i);
                 }
-                else
-                {
-                    iList[i] = iList[i];
 
-                }
             }
 
 
@@ -166,14 +163,27 @@ namespace CollectionsMasterConsoleUI
 
             //TODO: Sort the list then print results
             Console.WriteLine("Sorted Evens!!");
-            
+
+            iList.Sort();
+            NumberPrinter(iList);
+
+
             Console.WriteLine("------------------");
 
             //TODO: Convert the list to an array and store that into a variable
-            
+
+            int[] users = iList.ToArray();
+            Console.WriteLine("Users Array");
+            NumberPrinter(users);
+
 
             //TODO: Clear the list
-            
+
+            iList.Clear();
+            Console.WriteLine("Cleared List contents:");
+            NumberPrinter(iList);
+
+
 
             #endregion
         }
