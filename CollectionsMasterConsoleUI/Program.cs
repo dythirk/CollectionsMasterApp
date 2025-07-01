@@ -15,26 +15,27 @@ namespace CollectionsMasterConsoleUI
             #region Arrays
             //TODO: Create an integer Array of size 50
 
+
             int[] Array = new int[50];
 
 
             //TODO: Create a method to populate the number array with 50 random numbers that are between 0 and 50
-            int[] rando50 = new int[5];
+            //int[] rando50 = new int[5];
+            int[] rando50 = new int[50];
             Random rnd = new Random();
-            foreach (int i in rando50)
+            for (int i = 0; i < rando50.Length; i++)
             {
-                int rInt = rnd.Next(1, 51);
-                rando50[i] = rInt;
+                rando50[i] = rnd.Next(1, 51);
             }
 
 
             //TODO: Print the first number of the array
 
-            Console.WriteLine(rando50[0]);
+            Console.WriteLine($"First number: {rando50[0]}");
 
             //TODO: Print the last number of the array            
 
-            Console.WriteLine(rando50[rando50.Length-1]);
+            Console.WriteLine($"Last number: {rando50[rando50.Length-1]}");
 
             Console.WriteLine("All Numbers Original");
             //UNCOMMENT this method to print out your numbers from arrays or lists
@@ -57,20 +58,24 @@ namespace CollectionsMasterConsoleUI
 
             Console.WriteLine("---------REVERSE CUSTOM------------");
 
-            //ReverseArray(rando50);
-            //NumberPrinter(rando50);
+            ReverseArray(rando50);
+            NumberPrinter(rando50);
 
             Console.WriteLine("-------------------");
 
             //TODO: Create a method that will set numbers that are a multiple of 3 to zero then print to the console all numbers
             Console.WriteLine("Multiple of three = 0: ");
 
-            foreach (int i in rando50)
+            for (int i = 0; i < rando50.Length; i++)
             {
-                if (rando50[i] % 3 == 0)
+                if (rando50[i] % 3 != 0)
+                    rando50[i] = rando50[i];
+                else
                     rando50[i] = 0;
             }
-            
+
+            NumberPrinter(rando50);
+
 
             Console.WriteLine("-------------------");
 
@@ -78,7 +83,7 @@ namespace CollectionsMasterConsoleUI
             /*      Hint: Array.____()      */
             Console.WriteLine("Sorted numbers:");
 
-            Array.Sort(rando50);
+            //Array.Sort(rando50);
 
             Console.WriteLine("\n************End Arrays*************** \n");
             #endregion
@@ -161,16 +166,17 @@ namespace CollectionsMasterConsoleUI
 
         private static void ReverseArray(int[] array)
         {
-            int[] revrev = new int[50];
-            int decrement = 49;
-            foreach (int i in array)
+            int[] revrev = new int[array.Length];
+            int decrement = array.Length-1;
+            for (int i = 0; i < array.Length; i++)
             {
-                revrev[decrement] = array[i - 1];
+                revrev[decrement] = array[i];
                 decrement--;
             }
-            foreach (int i in array)
+
+            for (int j = 0; j < array.Length; j++)
             {
-                array[i] = revrev[i];
+                array[j] = revrev[j];
             }
         }
 
