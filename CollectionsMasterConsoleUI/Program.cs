@@ -13,16 +13,28 @@ namespace CollectionsMasterConsoleUI
 
             #region Arrays
             //TODO: Create an integer Array of size 50
-            
+
+            int[] Array = new int[50];
+
 
             //TODO: Create a method to populate the number array with 50 random numbers that are between 0 and 50
-            
+            int[] rando50 = new int[50];
+            Random rnd = new Random();
+            foreach (int i in rando50)
+            {
+                rando50[i] = rnd.Next(1, 51);
+            }
+
 
             //TODO: Print the first number of the array
 
+            Console.WriteLine(rando50[0]);
+
             //TODO: Print the last number of the array            
 
-            Console.WriteLine("All Numbers Original!");
+            Console.WriteLine(rando50[49]);
+
+            Console.WriteLine("All Numbers Original");
             //UNCOMMENT this method to print out your numbers from arrays or lists
             //NumberPrinter();
             Console.WriteLine("-------------------");
