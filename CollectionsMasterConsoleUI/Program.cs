@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -10,9 +11,6 @@ namespace CollectionsMasterConsoleUI
         static void Main(string[] args)
         {
 
-            Random rnd = new Random();
-
-
             //TODO: Follow the steps provided in the comments under each region.
             //Make the console formatted to display each section well
             //Utlilize the method stubs at the bottom for the methods you must create ⬇⬇⬇
@@ -21,15 +19,12 @@ namespace CollectionsMasterConsoleUI
             //TODO: Create an integer Array of size 50
 
 
-            int[] Array = new int[50];
+            int[] rando50 = new int[50];
 
 
             //TODO: Create a method to populate the number array with 50 random numbers that are between 0 and 50
-            int[] rando50 = new int[50];
-            for (int i = 0; i < rando50.Length; i++)
-            {
-                rando50[i] = rnd.Next(1, 51);
-            }
+
+            Populater(rando50);
 
 
             //TODO: Print the first number of the array
@@ -55,10 +50,13 @@ namespace CollectionsMasterConsoleUI
             */
 
 
-            //Array.Reverse(rando50);
+            Array.Reverse(rando50);
 
 
             Console.WriteLine("All Numbers Reversed:");
+
+            NumberPrinter(rando50);
+
 
             Console.WriteLine("---------REVERSE CUSTOM------------");
 
@@ -70,13 +68,8 @@ namespace CollectionsMasterConsoleUI
             //TODO: Create a method that will set numbers that are a multiple of 3 to zero then print to the console all numbers
             Console.WriteLine("Multiple of three = 0: ");
 
-            for (int i = 0; i < rando50.Length; i++)
-            {
-                if (rando50[i] % 3 != 0)
-                    rando50[i] = rando50[i];
-                else
-                    rando50[i] = 0;
-            }
+            ThreeKiller(rando50);
+
 
             NumberPrinter(rando50);
 
@@ -87,7 +80,9 @@ namespace CollectionsMasterConsoleUI
             /*      Hint: Array.____()      */
             Console.WriteLine("Sorted numbers:");
 
-            //Array.Sort(rando50);
+            Array.Sort(rando50);
+            NumberPrinter(rando50);
+
 
             Console.WriteLine("\n************End Arrays*************** \n");
             #endregion
@@ -106,11 +101,8 @@ namespace CollectionsMasterConsoleUI
 
             //TODO: Populate the List with 50 random numbers between 0 and 50 you will need a method for this            
 
-            for (int i = 0; i < 50; i++)
+            Populater(iList);
 
-            {
-                iList.Add(rnd.Next(1, 51));
-            }
 
             //TODO: Print the new capacity
 
@@ -134,7 +126,10 @@ namespace CollectionsMasterConsoleUI
             }
 
             int user = int.Parse(response);
-            Console.Write($"Does this list contain this user? {iList.Contains(user)}");
+
+            NumberChecker(iList, user);
+
+
 
             Console.WriteLine("-------------------");
 
@@ -147,14 +142,8 @@ namespace CollectionsMasterConsoleUI
             //TODO: Create a method that will remove all odd numbers from the list then print results
             Console.WriteLine("Evens Only!!");
 
-            for (int i = 0; i < iList.Count; i++)
-            {
-                if (iList[i] % 2 != 0)
-                {
-                    iList.RemoveAt(i);
-                }
+            OddKiller(iList);
 
-            }
 
 
             NumberPrinter(iList);
@@ -190,28 +179,52 @@ namespace CollectionsMasterConsoleUI
 
         private static void ThreeKiller(int[] numbers)
         {
-            
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] % 3 != 0)
+                    numbers[i] = numbers[i];
+                else
+                    numbers[i] = 0;
+            }
         }
 
         private static void OddKiller(List<int> numberList)
         {
-            
+
+            for (int i = 0; i < numberList.Count; i++)
+            {
+                if (numberList[i] % 2 != 0)
+                {
+                    numberList.RemoveAt(i);
+                }
+
+            }
         }
 
         private static void NumberChecker(List<int> numberList, int searchNumber)
         {
-            
+            Console.Write($"Does this list contain this user? {numberList.Contains(searchNumber)}");
+
         }
 
         private static void Populater(List<int> numberList)
         {
             Random rng = new Random();
+            for (int i = 0; i < 50; i++)
+
+            {
+                numberList.Add(rng.Next(1, 51));
+            }
 
         }
 
         private static void Populater(int[] numbers)
         {
             Random rng = new Random();
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                numbers[i] = rng.Next(1, 51);
+            }
 
         }        
 
